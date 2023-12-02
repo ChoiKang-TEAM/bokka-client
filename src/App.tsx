@@ -1,10 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from 'react'
+import RouterConfig from 'src/routes'
+import { BrowserRouter } from 'react-router-dom'
 
-function App() {
+const App = () => {
   return (
-    <></>
-  );
+    <BrowserRouter>
+      <RouterConfig />
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
