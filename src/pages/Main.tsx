@@ -6,16 +6,17 @@ import {
   FormControl,
   Button,
   Box,
+  Typography,
 } from '@mui/material'
 import { useState } from 'react'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
+import useAppDispatch from 'src/hooks/useAppDispatch'
+import { openSnackbar } from 'src/stores/notices/snackBarSlice'
 
 const theme = createTheme({
   components: {
-    // MUI 컨테이너에 대한 전역 스타일을 설정합니다.
     MuiContainer: {
       styleOverrides: {
-        // 'main' 최대 너비(sm)를 가지는 컨테이너에 대해 스타일을 적용합니다.
         root: {
           height: '100vh', // 높이를 화면 전체 높이로 설정합니다.
           display: 'flex', // 자식 요소를 flex로 배치합니다.
@@ -31,13 +32,23 @@ const theme = createTheme({
 
 const Main = () => {
   const [selected, setSelected] = useState<string>('')
+  const dispatch = useAppDispatch()
+
   const handleClickButton = () => {
-    console.log
+    if (!selected) dispatch(openSnackbar('문항 갯수를 선택해주세요.'))
   }
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container component="main" maxWidth="sm">
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          style={{ color: 'white' }}
+        >
+          면접보까
+        </Typography>
         <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
           <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
             <QuestionCountDropdown value={selected} setValue={setSelected} />
