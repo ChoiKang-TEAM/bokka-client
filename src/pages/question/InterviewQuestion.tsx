@@ -1,29 +1,55 @@
-import { FormControl, Button, Box } from '@mui/material'
+import { FormControl, Button, Box, Container, AppBar } from '@mui/material'
 import { useState } from 'react'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
+import QuestionForm from 'src/components/molecules/forms/QuestionForm'
+import ProgressHeader from 'src/components/molecules/headers/ProgressHeader'
+import ProgressBar from 'src/components/molecules/progress-bars/ProgressBar'
 import useAppDispatch from 'src/hooks/useAppDispatch'
+import useAppSelector from 'src/hooks/useAppSelector'
 import { openSnackbar } from 'src/stores/notices/snackBarSlice'
 
 const InterviewQuestion = () => {
-  const [selected, setSelected] = useState<string>('')
+  const totalQuestions = useAppSelector(
+    (state) => state.questionReducer.totalQuestions
+  )
+
+  const [progress, setProgress] = useState<number>(0)
+
   const dispatch = useAppDispatch()
 
-  const handleClickButton = () => {
-    if (!selected) dispatch(openSnackbar('문항 갯수를 선택해주세요.'))
+  const submitAnswer = (answer: string) => {
+    if (answer === '1234') return setProgress((state) => state + 1)
   }
   return (
-    <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
-      <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
-        <QuestionCountDropdown value={selected} setValue={setSelected} />
-      </FormControl>
-      <Button
-        onClick={handleClickButton}
-        variant={'outlined'}
-        sx={{ flex: 1, minWidth: 0 }}
+    <>
+      <ProgressHeader progress={progress} maxProgress={totalQuestions} />
+
+      <Box
+        sx={{
+          height: 'calc(100vh - 120px)',
+        }}
       >
-        오늘 문제 풀기
-      </Button>
-    </Box>
+        <Container
+          component="main"
+          maxWidth="sm"
+          sx={{
+            backgroundColor: 'white',
+            p: 2,
+            borderRadius: 1,
+            boxShadow: 1,
+            height: '100%',
+          }}
+        >
+          <ProgressBar progress={progress} maxBlocks={totalQuestions} />
+          <QuestionForm submitAnswer={submitAnswer} />
+        </Container>
+      </Box>
+      <AppBar
+        position="static"
+        color="primary"
+        sx={{ top: 'auto', bottom: 0 }}
+      ></AppBar>
+    </>
   )
 }
 
