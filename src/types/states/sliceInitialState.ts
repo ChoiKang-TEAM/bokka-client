@@ -1,3 +1,3 @@
-export interface QuizState {
+export interface QuestionState {
   totalQuestions: number
 }
