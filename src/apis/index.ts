@@ -10,8 +10,6 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log(error)
-    //window.dispatchEvent(new CustomEvent('api-error', { detail: '' }))
     return Promise.reject(error)
   }
 )
