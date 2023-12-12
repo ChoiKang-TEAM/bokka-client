@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { QuestionState } from 'src/types/states/sliceInitialState'
+import { QuestionState } from 'src/types'
 
 const initialState: QuestionState = {
   totalQuestions: 0,
