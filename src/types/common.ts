@@ -8,3 +8,5 @@ export interface LabelValueCommonInterface<ValueType> {
   label: string
   value: ValueType
 }
+
+export type AuthProviderType = 'GOOGLE' | 'KAKAO' | 'NAVER'

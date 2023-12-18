@@ -7,7 +7,9 @@ import {
   Typography,
 } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
-import SocialLoginButtons from '../../atoms/buttons/SocialLoginButton'
+import SocialLoginButtons, {
+  SocialLoginButtonProps,
+} from '../../atoms/buttons/SocialLoginButton'
 import GoogleIcon from '@mui/icons-material/Google'
 
 const theme = createTheme({
@@ -54,9 +56,9 @@ const LoginForm = (props: LoginFormProps) => {
     event.preventDefault()
     props.onLogin(username, password)
   }
-  const googleButton = {
+  const googleButton: SocialLoginButtonProps = {
     icon: <GoogleIcon />,
-    label: '구글 로그인',
+    label: 'GOOGLE',
     color: '#DB4437',
   }
 
