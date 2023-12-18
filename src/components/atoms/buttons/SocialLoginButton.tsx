@@ -1,20 +1,30 @@
 import React, { ReactNode } from 'react'
 import { Button, Stack } from '@mui/material'
+import { AuthProviderType } from 'src/types'
+import authApi from 'src/apis/auth'
+import { DEFAULT_WEB_SITE_NAME } from 'src/constants/datas'
 
-interface SocialLoginButtonProps {
+export interface SocialLoginButtonProps {
   icon: ReactNode
-  label: string
+  label: AuthProviderType
   color: string
 }
 
 const SocialLoginButtons = (props: SocialLoginButtonProps) => {
+  const handleClickSocialLogin = () => {
+    const url = `http://localhost:3100/api/auth/login/google?site=${DEFAULT_WEB_SITE_NAME}`
+    window.location.replace(url)
+  }
+  const checkCookie = async () => {
+    const result = await authApi.checkCookie()
+  }
   return (
     <Stack direction="row" spacing={2}>
       <Button
         startIcon={props.icon}
         variant="contained"
         style={{ backgroundColor: props.color, color: '#fff' }}
-        onClick={() => console.log(props.label)}
+        onClick={handleClickSocialLogin}
       ></Button>
     </Stack>
   )
