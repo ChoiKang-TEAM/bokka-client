@@ -22,7 +22,7 @@ const InterviewQuestion = () => {
   }
   return (
     <>
-      <ProgressHeader progress={progress} maxProgress={totalQuestions} />
+      {/* <ProgressHeader progress={progress} maxProgress={totalQuestions} /> */}
 
       <Box
         sx={{

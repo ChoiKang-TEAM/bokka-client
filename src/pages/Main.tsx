@@ -1,12 +1,4 @@
-import { ThemeProvider } from '@emotion/react'
-import {
-  CssBaseline,
-  Container,
-  FormControl,
-  Button,
-  Box,
-  Typography,
-} from '@mui/material'
+import { FormControl, Button, Box, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
@@ -20,8 +12,9 @@ const Main = () => {
   const navigate = useNavigate()
 
   const handleClickButton = () => {
-    if (!selected) dispatch(openSnackbar('문항 갯수를 선택해주세요.'))
+    if (!selected) return dispatch(openSnackbar('문항 갯수를 선택해주세요.'))
     const questions: number = parseInt(selected)
+
     dispatch(setTotalQuestions(questions))
     navigate('/question/interview')
   }
