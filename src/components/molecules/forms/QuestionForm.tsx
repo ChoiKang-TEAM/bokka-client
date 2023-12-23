@@ -41,7 +41,7 @@ const QuestionForm = (props: QuestionFormChildProps) => {
         <Fade in={true}>
           <CheckCircleOutlineIcon style={{ color: 'green' }} />
         </Fade>
-        <Typography variant="body1"></Typography>
+        <Typography variant="body1">문제 1</Typography>
         <Typography
           variant="body1"
           sx={{ mt: 2, color: 'primary.main' }}
