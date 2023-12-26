@@ -1,4 +1,4 @@
-import { SocialLoginDto } from 'src/types'
+import { LocalLoginDto, SocialLoginDto } from 'src/types'
 import axiosInstance from '.'
 import { DEFAULT_WEB_SITE_NAME } from 'src/constants/datas'
 
@@ -18,6 +18,22 @@ const socialLogin = async (dto: SocialLoginDto) => {
   }
 }
 
+const login = async (dto: LocalLoginDto) => {
+  try {
+    const data = {
+      userId: dto.userId,
+      password: dto.password,
+      siteType: DEFAULT_WEB_SITE_NAME,
+      loginProvider: dto.authProvider,
+    }
+    await axiosInstance.post('/auth/login', data, {
+      withCredentials: true,
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 const checkCookie = async () => {
   try {
     await axiosInstance.get('/auth/jwt/check', {
@@ -29,6 +45,7 @@ const checkCookie = async () => {
 }
 
 const authApi = {
+  login,
   socialLogin,
   checkCookie,
 }
