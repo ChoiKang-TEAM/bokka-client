@@ -2,6 +2,7 @@ import { FormControl, Button, Box, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
+import MainHeader from 'src/components/molecules/headers/MainHeader'
 import useAppDispatch from 'src/hooks/useAppDispatch'
 import { openSnackbar } from 'src/stores/notices/snackBarSlice'
 import { setTotalQuestions } from 'src/stores/quizs/questionSlice'
@@ -20,14 +21,6 @@ const Main = () => {
   }
   return (
     <>
-      <Typography
-        variant="h4"
-        component="h1"
-        gutterBottom
-        style={{ color: 'white' }}
-      >
-        면접보까
-      </Typography>
       <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
         <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
           <QuestionCountDropdown value={selected} setValue={setSelected} />

@@ -4,6 +4,7 @@ import MainLayout from 'src/components/organisms/layouts/MainLayout'
 import Main from 'src/pages/Main'
 import Login from 'src/pages/auth/Login'
 import InterviewQuestion from 'src/pages/question/InterviewQuestion'
+import MyPage from 'src/pages/user/MyPage'
 
 const RouterConfig = () => {
   const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const RouterConfig = () => {
               element: <InterviewQuestion />,
             },
           ],
+        },
+        {
+          path: 'my-page',
+          element: <MyPage />,
         },
       ],
     },
