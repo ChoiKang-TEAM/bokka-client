@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const MainHeader = () => {
   const navigate = useNavigate()
   const handleOnClickMyPageButton = () => {
-    navigate('MyPage')
+    navigate('my-page')
   }
   return (
     <AppBar
