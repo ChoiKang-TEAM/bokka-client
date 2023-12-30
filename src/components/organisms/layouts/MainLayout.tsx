@@ -6,6 +6,7 @@ import {
   CssBaseline,
   Container,
 } from '@mui/material'
+import MainHeader from 'src/components/molecules/headers/MainHeader'
 
 const theme = createTheme({
   components: {
@@ -34,9 +35,18 @@ const MainLayout = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container component="main" maxWidth="sm">
-        <Outlet />
-      </Container>
+      <div
+        style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}
+      >
+        <MainHeader />
+        <Container
+          component="main"
+          maxWidth="sm"
+          style={{ flex: 1, overflowY: 'auto' }}
+        >
+          <Outlet />
+        </Container>
+      </div>
     </ThemeProvider>
   )
 }

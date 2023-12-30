@@ -44,10 +44,25 @@ const checkCookie = async () => {
   }
 }
 
+const logout = async () => {
+  try {
+    await axiosInstance.post(
+      '/auth/logout',
+      {},
+      {
+        withCredentials: true,
+      }
+    )
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 const authApi = {
   login,
   socialLogin,
   checkCookie,
+  logout,
 }
 
 export default authApi

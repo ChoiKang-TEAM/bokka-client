@@ -4,8 +4,13 @@ import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
+import { useNavigate } from 'react-router-dom'
 
 const MainHeader = () => {
+  const navigate = useNavigate()
+  const handleOnClickMyPageButton = () => {
+    navigate('MyPage')
+  }
   return (
     <AppBar
       position="static"
@@ -13,12 +18,17 @@ const MainHeader = () => {
       style={{ backgroundColor: '#9A7DFF' }}
     >
       <Toolbar>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <MenuIcon />
-        </IconButton>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           면접보까
         </Typography>
+        <IconButton
+          edge="start"
+          color="inherit"
+          aria-label="menu"
+          onClick={handleOnClickMyPageButton}
+        >
+          <MenuIcon />
+        </IconButton>
       </Toolbar>
     </AppBar>
   )
