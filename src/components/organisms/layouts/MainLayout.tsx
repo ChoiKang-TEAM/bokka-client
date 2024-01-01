@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import {
   ThemeProvider,
@@ -8,6 +8,7 @@ import {
 } from '@mui/material'
 import MainHeader from 'src/components/molecules/headers/MainHeader'
 import MyPageHeader from 'src/components/molecules/headers/MyPageHeader'
+import Footer from 'src/components/molecules/footers/MainFooter'
 
 const theme = createTheme({
   components: {
@@ -17,9 +18,6 @@ const theme = createTheme({
           height: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: '#9A7DFF',
         },
       },
     },
@@ -28,6 +26,7 @@ const theme = createTheme({
 
 const MainLayout = () => {
   const location = useLocation()
+
   const renderHeader = () => {
     switch (location.pathname) {
       case '/my-page':
@@ -36,6 +35,7 @@ const MainLayout = () => {
         return <MainHeader />
     }
   }
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -47,16 +47,13 @@ const MainLayout = () => {
           component="main"
           maxWidth="sm"
           style={{
-            flex: 1,
             overflowY: 'auto',
-            display: 'flex', // Flex 컨테이너로 설정
-            flexDirection: 'column', // 자식 요소들을 수직 방향으로 정렬
-            alignItems: 'center', // 가로 중앙 정렬
-            paddingTop: '20px', // 상단 여백 (선택적)
+            paddingTop: '20px',
           }}
         >
           <Outlet />
         </Container>
+        <Footer />
       </div>
     </ThemeProvider>
   )
