@@ -1,4 +1,6 @@
-import axios from 'axios'
+import axios, { AxiosError } from 'axios'
+import { AxiosErrorResultInterface, AxiosResponseData } from 'src/types'
+import authApi from './auth'
 
 const axiosInstance = axios.create({
   baseURL: 'http://localhost:3100/api',
@@ -7,10 +9,19 @@ const axiosInstance = axios.create({
   },
 })
 
+const isTokenExpiredError = (error: AxiosError): boolean => {
+  const responseData = error.response
+    ?.data as AxiosResponseData<AxiosErrorResultInterface>
+  return responseData && responseData.code === 5002
+}
+
 axiosInstance.interceptors.response.use(
   (response) => response,
-  (error) => {
-    return Promise.reject(error)
+  async (error) => {
+    if (isTokenExpiredError(error)) {
+      await authApi.refresh()
+      return axiosInstance(error.config)
+    } else return Promise.reject(error)
   }
 )
 export default axiosInstance

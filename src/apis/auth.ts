@@ -58,11 +58,20 @@ const logout = async () => {
   }
 }
 
+const refresh = async () => {
+  try {
+    await axiosInstance.get('/auth/refresh', { withCredentials: true })
+  } catch (e) {
+    console.error(e)
+  }
+}
+
 const authApi = {
   login,
   socialLogin,
   checkCookie,
   logout,
+  refresh,
 }
 
 export default authApi
