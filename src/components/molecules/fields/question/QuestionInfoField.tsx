@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Avatar, Box, Button, FormControl, Stack } from '@mui/material'
-import authApi from 'src/apis/auth'
-import userApi from 'src/apis/user'
+
 import CircularWithValueLabel from '../../progress-bars/CircularWithLabel'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
 import useAppDispatch from 'src/hooks/useAppDispatch'
@@ -11,7 +10,7 @@ import { setTotalQuestions } from 'src/stores/quizs/questionSlice'
 
 const QuestionInfoField = () => {
   const [selected, setSelected] = useState<string>('')
-  const [progress, setProgress] = useState<number>(70)
+  const [progress, setProgress] = useState<number>(0)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -26,11 +25,11 @@ const QuestionInfoField = () => {
   return (
     <Box
       sx={{
-        position: 'relative', // 상대 위치 설정
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: 'white',
+        backgroundColor: 'rgb(220,220,220)',
         borderRadius: '8px',
         height: '33.3%',
         width: '100%',
@@ -44,12 +43,19 @@ const QuestionInfoField = () => {
           src="/temp.jpg"
           sx={{ width: 128, height: 128 }}
         />
-        <CircularWithValueLabel progress={progress} />
-        <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
-          <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
-            <QuestionCountDropdown value={selected} setValue={setSelected} />
-          </FormControl>
-        </Box>
+        <Stack
+          direction="column"
+          alignItems="center"
+          spacing={1}
+          width={'100%'}
+        >
+          <CircularWithValueLabel progress={progress} />
+          <Box sx={{ gap: 1, display: 'flex', width: '100%' }}>
+            <FormControl sx={{ flex: 1, minWidth: 0 }} size="small">
+              <QuestionCountDropdown value={selected} setValue={setSelected} />
+            </FormControl>
+          </Box>
+        </Stack>
       </Stack>
 
       <Button
@@ -65,6 +71,7 @@ const QuestionInfoField = () => {
           height: '50px',
           fontSize: '1.25rem',
         }}
+        onClick={handleClickButton}
       >
         {progress >= 100 ? '추가 학습' : '학습하기'}
       </Button>

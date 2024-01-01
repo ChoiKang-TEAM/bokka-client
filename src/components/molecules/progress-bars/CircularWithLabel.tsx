@@ -16,7 +16,7 @@ const CircularWithValueLabel = (props: CircularWithValueLabelChildProps) => {
         variant="determinate"
         value={100}
         size={70}
-        sx={{ color: '#ddd' }}
+        sx={{ color: 'rgb(150,150,150)' }}
       />
       <CircularProgress
         variant="determinate"

@@ -53,7 +53,7 @@ const MainLayout = () => {
         >
           <Outlet />
         </Container>
-        <Footer />
+        {location.pathname === '/' && <Footer />}
       </div>
     </ThemeProvider>
   )

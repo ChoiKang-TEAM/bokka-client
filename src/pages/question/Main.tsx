@@ -2,6 +2,7 @@ import { FormControl, Button, Box, Typography } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import QuestionCountDropdown from 'src/components/atoms/dropdowns/QuestionCountDropdown'
+import AttendanceCheckField from 'src/components/molecules/fields/AttendanceCheckField'
 import QuestionInfoField from 'src/components/molecules/fields/question/QuestionInfoField'
 import MainHeader from 'src/components/molecules/headers/MainHeader'
 import useAppDispatch from 'src/hooks/useAppDispatch'
@@ -23,6 +24,8 @@ const Main = () => {
   return (
     <>
       <QuestionInfoField />
+      <Box sx={{ my: 2 }} />
+      <AttendanceCheckField />
     </>
   )
 }

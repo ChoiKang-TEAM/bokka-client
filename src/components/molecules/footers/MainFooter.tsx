@@ -1,4 +1,3 @@
-// Footer 컴포넌트
 import React, { useState } from 'react'
 import { Box, Paper, Tabs, Tab } from '@mui/material'
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents'
@@ -9,6 +8,14 @@ const Footer = () => {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue)
+    switch (newValue) {
+      case 0:
+        return
+      case 1:
+        return
+      case 2:
+        return
+    }
   }
 
   return (
